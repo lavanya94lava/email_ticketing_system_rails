@@ -18,6 +18,7 @@
             <td><%= email[:date]%></td>
             <td><%= email[:subject]%></td>
             <td><%= email[:body]%></td>
+            <td><%= form_for :user do |f| %><%= collection_select(:user, :user_id, User.all, :id, :name, {}, {:multiple => false})%><% end %></td>
         </tr>
     <%end%>
 <%else%>
