@@ -1,0 +1,33 @@
+<p>
+    <strong>
+        Sender:
+    </strong>
+
+    <%=  @email.sender%>
+
+    <br>
+
+    <strong>
+        Subject:
+    </strong>
+
+
+    <%= @email.subject%>
+
+    <br>
+
+    <strong>
+        Body:
+    </strong>
+
+    <%= simple_format @email.body%>
+
+    <strong>
+        Sent on:
+    </strong>
+
+
+    <%= @email.date%>
+
+
+</p>

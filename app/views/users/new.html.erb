@@ -1,0 +1,30 @@
+<h1>Signup!</h1>
+
+<%= form_for :user, url: '/users' do |form| %>
+
+  <div class="control-group">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+  
+    <div class="control-group">
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+    </div>
+  
+    <div class="control-group">
+      <%= form.label :password %>
+      <%= form.text_field :password %>
+    </div>
+    <div class="control-group">
+      <%= form.label :password_confirmation %>
+      <%= form.text_field :password_confirmation %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+
+<% end %>
+
+
