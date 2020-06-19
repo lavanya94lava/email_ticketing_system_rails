@@ -53,13 +53,17 @@ class AdminController < ApplicationController
 
 
       puts i.id
-      Email.create(
-        subject: subject.force_encoding('UTF-8'),
-        sender:sender[0, sender.length-1].force_encoding('UTF-8') ,
-        body: body.force_encoding('UTF-8'),
-        date: date.force_encoding('UTF-8'),
-        mail_id: i.id.force_encoding('UTF-8')
-      )
+      prev_mail = Email.find_by(mail_id: i.id);
+      
+      if prev_mail.nil?
+        Email.create(
+          subject: subject.force_encoding('UTF-8'),
+          sender:sender[0, sender.length-1].force_encoding('UTF-8') ,
+          body: body.force_encoding('UTF-8'),
+          date: date.force_encoding('UTF-8'),
+          mail_id: i.id.force_encoding('UTF-8')
+        )
+      end
     
 
     my_email = {
