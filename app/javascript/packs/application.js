@@ -11,9 +11,9 @@ require("jquery")
 
 console.log("heloo there, we are meetingin rails too");
 
-let res= $(select).val()
+let res = $("#user_user_id").val()
 $(function () { 
-    $(select).change(function () { 
+    $("#user_user_id").change(function () { 
         console.log("res-->",res)
     })
 })

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :emails
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'admin#labels'
 
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
   
   get '/labels' => 'admin#labels'
 
+  post '/users/:email_id' => 'users#routing'
 
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'

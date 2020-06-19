@@ -18,7 +18,7 @@
             <td><%= email[:date]%></td>
             <td><%= email[:subject]%></td>
             <td><%= email[:body]%></td>
-            <td><%= form_for :user do |f| %><%= collection_select(:user, :user_id, User.where(admin: nil), :id, :name, {}, {:multiple => false})%><% end %></td>
+            <td><%= form_for :user, url: "/users/#{email[:mail_id]}" do |f| %><%= hidden_field_tag(:email_id, "#{email[:mail_id]}")%><%= collection_select(:user, :user_id, User.where(admin: nil), :id, :name, {}, {:multiple => false})%><%= f.submit%><% end %></td>
         </tr>
     <%end%>
 <%else%>

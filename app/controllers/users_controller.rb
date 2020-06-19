@@ -14,6 +14,16 @@ class UsersController < ApplicationController
         end
     end
 
+    def routing 
+
+
+        @email = Email.find_by(mail_id: params[:email_id]);
+
+        puts "eamilllllll"
+        puts @email.sender
+
+    end
+
     private
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation)

@@ -50,9 +50,8 @@ class AdminController < ApplicationController
       subject = email.payload.headers.find { |header| header.name == "Subject" }.value
       date = email.payload.headers.find {|h| h.name == "Date" }.value
       body = email.payload.parts[0].body.data
+      mail_id = i.id
 
-
-      puts i.id
       prev_mail = Email.find_by(mail_id: i.id);
       
       if prev_mail.nil?
@@ -70,7 +69,8 @@ class AdminController < ApplicationController
         sender: sender[0, sender.length-1],
         subject: subject,
         date: date,
-        body: body
+        body: body,
+        mail_id:mail_id
     }
     @email_array.push(my_email)
   end
