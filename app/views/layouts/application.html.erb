@@ -13,11 +13,13 @@
 
   <body>
 
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-    <p class="alert alert-danger"><%= alert %></p>
+  <% if current_user && current_user.admin %>
+    <p class="alert alert-success">"Welcome! Admin"</p>
+  <% else %>
+    <% if current_user%>
+    <p class="alert alert-success">"Welcome! Admin"</p>
+    <%end%>
+    <p class="alert alert-danger">"Please login first"</p>
   <% end %>
 
   <p class="navbar-text float-right">

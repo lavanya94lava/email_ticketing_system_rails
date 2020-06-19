@@ -36,24 +36,37 @@ class AdminController < ApplicationController
   
     @labels_list = service.list_user_labels('me')
 
-    puts "@labels/list"
-    puts @labels_list.labels
-
     @emails = service.list_user_messages(
-    'me',
-    max_results: 5,
-    q: "from: ananya@codingninjas.in"
-)
-@email_array = []
-if set = @emails.messages
-    set.each do |i|
-    email = service.get_user_message('me', i.id)
-    sender = email.payload.headers.find{|h| h.name =="From"}.value.split("<")[1]
+      'me',
+      max_results: 100,
+      q: "from: ananya@codingninjas.in"
+    )
+    @email_array = []
+    if set = @emails.messages
+      set.each do |i|
+      email = service.get_user_message('me', i.id)
+      sender = email.payload.headers.find{|h| h.name =="From"}.value.split("<")[1]
+
+      subject = email.payload.headers.find { |header| header.name == "Subject" }.value
+      date = email.payload.headers.find {|h| h.name == "Date" }.value
+      body = email.payload.parts[0].body.data
+
+
+      puts i.id
+      Email.create(
+        subject: subject.force_encoding('UTF-8'),
+        sender:sender[0, sender.length-1].force_encoding('UTF-8') ,
+        body: body.force_encoding('UTF-8'),
+        date: date.force_encoding('UTF-8'),
+        mail_id: i.id.force_encoding('UTF-8')
+      )
+    
+
     my_email = {
         sender: sender[0, sender.length-1],
-        subject: email.payload.headers.find { |header| header.name == "Subject" }.value,
-        date: email.payload.headers.find {|h| h.name == "Date" }.value,
-        body: email.payload.parts[0].body.data
+        subject: subject,
+        date: date,
+        body: body
     }
     @email_array.push(my_email)
   end
@@ -62,7 +75,7 @@ end
   end
 
   def index 
-    @emails = email_array;
+    @emails = Email.all;
   end
 
   def temp
