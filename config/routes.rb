@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   post '/emails/:id/users' => 'users#routing'
 
+  post '/emails/reply/:id' => 'emails#reply'
+
   get '/users/:id' => 'users#show'
 
   # these routes are for showing users a login form, logging them in, and logging them out.

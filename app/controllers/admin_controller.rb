@@ -54,8 +54,6 @@ class AdminController < ApplicationController
 
       prev_mail = Email.find_by(mail_id: i.id);
       
-      puts "hiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-      puts body
       if prev_mail.nil?
         Email.create(
           subject: subject,

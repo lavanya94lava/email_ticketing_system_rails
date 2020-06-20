@@ -18,22 +18,13 @@ class UsersController < ApplicationController
 
     def routing 
 
-
         @email = Email.find_by(mail_id: params[:email_id]);
 
-
-        puts "whyyyyyyyyyyyyyyyyyyyyyyyyyyy"
-        puts params
         getUserId = params[:user][:user_id]
 
         @user = User.find(getUserId);
-
-
-        puts "here is the thing you are looking for"
         
-        @user.emails << (@email)
-
-        puts @emails
+        @user.emails.push(@email)
 
         @user.save
 
@@ -46,11 +37,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
 
     end
-
-    private
-        def email_params
-            params.require(:user).permit(:email_id, :email_subject, :email_sender, :email_body)
-        end
 
     private
         def user_params

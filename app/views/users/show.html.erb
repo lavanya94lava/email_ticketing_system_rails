@@ -18,7 +18,15 @@
         <td><%= email[:date]%></td>
         <td><%= email[:subject]%></td>
         <td><%= email[:body]%></td>
-        <td></td>
+        <td>
+            <%= form_for :user, url: "/emails/reply/#{email[:mail_id]}" do |f| %>
+                <%= hidden_field_tag(:email_sender, "#{email[:sender]}")%>
+                <div class="control-group">
+                    <%= f.text_area :email%>
+                </div>
+                <%= f.submit "Send Email" %>
+            <% end %>
+        </td>
     </tr>
 <%end%>
 <%else%>
