@@ -12,7 +12,7 @@
             <th>Body</th>
             <th>Reply Please </h1>
         </tr>
-<% @user.email.each do |email|%>
+<% @user.emails.each do |email|%>
 <tr>
         <td><%= email[:sender]%></td>
         <td><%= email[:date]%></td>

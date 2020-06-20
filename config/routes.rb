@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   get '/labels' => 'admin#labels'
 
-  post '/users/:email_id' => 'users#routing'
+  post '/emails/:id/users' => 'users#routing'
 
   get '/users/:id' => 'users#show'
 
