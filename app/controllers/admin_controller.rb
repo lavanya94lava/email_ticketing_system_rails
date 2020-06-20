@@ -39,7 +39,7 @@ class AdminController < ApplicationController
     @emails = service.list_user_messages(
       'me',
       max_results: 100,
-      q: "from: ananya@codingninjas.in"
+      q: "from: anahita.spv@gmail.com"
     )
     @email_array = []
     if set = @emails.messages
@@ -54,13 +54,15 @@ class AdminController < ApplicationController
 
       prev_mail = Email.find_by(mail_id: i.id);
       
+      puts "hiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+      puts body
       if prev_mail.nil?
         Email.create(
-          subject: subject.force_encoding('UTF-8'),
-          sender:sender[0, sender.length-1].force_encoding('UTF-8') ,
-          body: body.force_encoding('UTF-8'),
-          date: date.force_encoding('UTF-8'),
-          mail_id: i.id.force_encoding('UTF-8')
+          subject: subject,
+          sender:sender[0, sender.length-1] ,
+          body: body,
+          date: date,
+          mail_id: i.id
         )
       end
     

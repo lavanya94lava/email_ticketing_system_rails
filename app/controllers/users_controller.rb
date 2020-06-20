@@ -17,11 +17,29 @@ class UsersController < ApplicationController
     def routing 
 
 
-        @email = Email.find_by(mail_id: params[:email_id]);
+        email = Email.find_by(mail_id: params[:email_id]);
 
-        puts "eamilllllll"
-        puts @email.sender
+        getUserId = params[:user][:user_id]
 
+        @user = User.find(getUserId);
+
+        puts "useremail" 
+        puts @user.name
+
+
+        @user.save
+
+        redirect_to "/users/#{getUserId}";
+        
+        puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    end
+
+
+    def show 
+        @user = User.find(params[:id])
+
+        puts "usersssssssssss"
+        puts @user
     end
 
     private
