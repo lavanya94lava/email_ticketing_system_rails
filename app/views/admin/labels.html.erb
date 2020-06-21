@@ -26,6 +26,11 @@
                     </div>
                     <%= hidden_field_tag(:email_id, "#{email[:mail_id]}")%>
                     <%= f.submit "Assign User"%>
+                    <div class = "form-group">
+                        <% if email.user_id%>
+                            <p>This email has been already been assigned to <strong><%= User.find(email.user_id).name%></strong>. Now, you can reassign it to some other user</p>
+                        <%end%>
+                    </div>
                 <% end %>
             </td>
         </tr>

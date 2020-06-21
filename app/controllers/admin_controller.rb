@@ -42,7 +42,7 @@ class AdminController < ApplicationController
       @emails = service.list_user_messages(
         'me',
         max_results: 4,
-        q: "from: test.lavanya94@gmail.com"
+        q: "from: anahita.spv@gmail.com"
       )
       @email_array = []
       if set = @emails.messages
@@ -71,26 +71,27 @@ class AdminController < ApplicationController
           Email.create(
             subject: subject,
             sender:sender[0, sender.length-1], 
-            body: body,
+            body: body.force_encoding('UTF-8'),
             date: date,
             mail_id: i.id,
           )
         end
 
-        puts "current user"
+        
 
-        puts current_user
-      
-        my_email = {
-            sender: sender[0, sender.length-1],
-            subject: subject,
-            date: date,
-            body: body,
-            mail_id:mail_id
-        }
-        @email_array.push(my_email)
+        
+        # my_email = {
+        #     sender: sender[0, sender.length-1].force_encoding('UTF-8'),
+        #     subject: subject.force_encoding('UTF-8'),
+        #     date: date.force_encoding('UTF-8'),
+        #     body: body,
+        #     mail_id:mail_id.force_encoding('UTF-8')
+        # }
+        # @email_array.push(my_email)
+
+
       end
-      @email_array
+      @email_array  = Email.all
     else 
       redirect_to "/users/#{current_user.id}"
     end

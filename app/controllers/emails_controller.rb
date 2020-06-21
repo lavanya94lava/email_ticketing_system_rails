@@ -23,6 +23,7 @@ class EmailsController < ApplicationController
         ReplyMailer.new_reply(@reply).deliver_now
 
         
+
         respond_to do |format|
             format.html {redirect_to "/"}
             format.json { render json: @reply}
