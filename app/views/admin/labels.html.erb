@@ -21,7 +21,9 @@
             <td>
                
                 <%= form_for :user, url: "/emails/#{email[:mail_id]}/users" do |f|%>
-                    <%= collection_select(:user, :user_id, User.where(admin: nil), :id, :name, {}, {:multiple => false})%>
+                    <div class = "form-group">
+                        <%= collection_select(:user, :user_id, User.where(admin: nil), :id, :name, {prompt: true}, {})%>
+                    </div>
                     <%= hidden_field_tag(:email_id, "#{email[:mail_id]}")%>
                     <%= f.submit "Assign User"%>
                 <% end %>

@@ -28,59 +28,67 @@ class AdminController < ApplicationController
   end
 
   def labels
-    client = Signet::OAuth2::Client.new(access_token: session[:access_token])
-  
-    service = Google::Apis::GmailV1::GmailService.new
-  
-    service.authorization = client
-  
-    @labels_list = service.list_user_labels('me')
 
-    @emails = service.list_user_messages(
-      'me',
-      max_results: 100,
-      q: "from: anahita.spv@gmail.com"
-    )
-    @email_array = []
-    if set = @emails.messages
-      set.each do |i|
-      email = service.get_user_message('me', i.id)
-      sender = email.payload.headers.find{|h| h.name =="From"}.value.split("<")[1]
+    if current_user.admin
 
-      subject = email.payload.headers.find { |header| header.name == "Subject" }.value
-      date = email.payload.headers.find {|h| h.name == "Date" }.value
-      body = email.payload.parts[0].body.data
-      mail_id = i.id
-
-      prev_mail = Email.find_by(mail_id: i.id);
-      
-      if prev_mail.nil?
-        Email.create(
-          subject: subject,
-          sender:sender[0, sender.length-1] ,
-          body: body,
-          date: date,
-          mail_id: i.id
-        )
-      end
+      client = Signet::OAuth2::Client.new(access_token: session[:access_token])
     
+      service = Google::Apis::GmailV1::GmailService.new
+    
+      service.authorization = client
+    
+      @labels_list = service.list_user_labels('me')
 
-    my_email = {
-        sender: sender[0, sender.length-1],
-        subject: subject,
-        date: date,
-        body: body,
-        mail_id:mail_id
-    }
-    @email_array.push(my_email)
-  end
-  @email_array
-end
+      @emails = service.list_user_messages(
+        'me',
+        max_results: 100,
+        q: "from: anahita.spv@gmail.com"
+      )
+      @email_array = []
+      if set = @emails.messages
+        set.each do |i|
+        email = service.get_user_message('me', i.id)
+        sender = email.payload.headers.find{|h| h.name =="From"}.value.split("<")[1]
+
+        subject = email.payload.headers.find { |header| header.name == "Subject" }.value
+        date = email.payload.headers.find {|h| h.name == "Date" }.value
+        body = email.payload.parts[0].body.data
+        mail_id = i.id
+
+        prev_mail = Email.find_by(mail_id: i.id);
+        
+        if prev_mail.nil?
+          Email.create(
+            subject: subject,
+            sender:sender[0, sender.length-1] ,
+            body: body,
+            date: date,
+            mail_id: i.id
+          )
+        end
+      
+
+        my_email = {
+            sender: sender[0, sender.length-1],
+            subject: subject,
+            date: date,
+            body: body,
+            mail_id:mail_id
+        }
+        @email_array.push(my_email)
+      end
+      @email_array
+    else 
+      redirect_to "/users/#{current_user.id}"
+    end
+
   end
 
   def index 
     @emails = Email.all;
   end
+
 end
 
+end
 
