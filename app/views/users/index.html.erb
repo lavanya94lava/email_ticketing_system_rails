@@ -1,0 +1,23 @@
+<h1 class = "col-md-4">All Users</h1>
+<p class ="col-md-4"><%= link_to 'New User', "/signup" %></p>
+<table class = "table table-bordered mt-5">
+  <tr >
+    <th>Name</th>
+    <th>Email</th>
+    <th>ID</th>
+    <th>Show</th>
+    <th>Destroy</th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.id %></td>
+      <td><%= link_to 'Show', "/user/#{user.id}"%></td>
+      <td><%= link_to 'Destroy', "/user/#{user.id}",
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,9 +1,12 @@
 
 <% if current_user && current_user.admin%>
-    <h2>
+    <h2 class = col-md-8>
         Here is a list of all emails you have received
     </h2>
 
+    <div class = "col-md-4">
+        <%= link_to "Show all Users", "/usersAll/index"%>
+    </div>
     <table class = "table table-bordered mt-5" >
             <tr>
                 <th>Sender</th>

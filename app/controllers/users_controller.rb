@@ -37,6 +37,23 @@ class UsersController < ApplicationController
         @user = User.find(params[:id]);
     end
 
+
+    # this shows the details of a user
+
+    def view
+        @user = User.find(params[:id]);
+    end
+
+    def index
+        @users = User.all
+    end
+
+    def destroy
+        @user = User.find(params[:id]);
+        @user.destroy
+        
+        redirect_to "/usersAll/index"
+    end
     private
         def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation)

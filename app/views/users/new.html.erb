@@ -1,5 +1,5 @@
-<% if current_user%>
-  <h1>Already logged in here, so you are not authorized </h1>
+<% if current_user && !current_user.admin%>
+  <h1>Already logged in here, so you are not authorized to create a new user</h1>
 <%else%>
   <h1 class = "col-md-4">Signup!</h1>
 
