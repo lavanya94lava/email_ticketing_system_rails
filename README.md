@@ -38,7 +38,7 @@ In this project, we are making a web app, where we can access our Gmail Inbox an
 
 # Way forward
 
-1. EveryTime we perform an operation, page gets reloaded, we can embed AJAX into it to make it more user friendly.
+1. Everytime we perform an operation, page gets reloaded, we can embed AJAX into it to make it more user friendly.
 2. We can have pagination for every page as the queries might be in thousand or lakhs and loading all of them in one go is not feasible.
 3. We can have separate divs for resolved and unresolved queries, for better UI/UX.
 
@@ -49,5 +49,5 @@ In this project, we are making a web app, where we can access our Gmail Inbox an
 
 2. Also, if you are having two-way authentication in Gmail, you may never use your app to send mails, disable two-way authentication before coming here.
 
-3. UTF-8 encoding might be an issue, this app works fine for genuine emails sent by individuals, but for automated mails, it throws an error as many header which we user for processing data, is missing from those mails.
+3. UTF-8 encoding might be an issue, this app works fine for genuine emails sent by individuals, but for automated mails, it throws an error as many headers which we use for processing data, is missing from those mails.
 
