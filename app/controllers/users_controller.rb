@@ -4,9 +4,6 @@ class UsersController < ApplicationController
     end
 
     def create 
-
-
-
         user = User.new(user_params)
         if user.save
             session[:user_id] = user.id
@@ -17,12 +14,23 @@ class UsersController < ApplicationController
     end
 
     def routing 
+        
+        getUserId = params[:user][:user_id]
+        @user = User.find(getUserId);
 
         @email = Email.find_by(mail_id: params[:email_id]);
 
-        getUserId = params[:user][:user_id]
+        puts "params in routing"
 
-        @user = User.find(getUserId);
+        puts params
+
+
+        puts "@user.name"
+        puts @user.name
+
+        puts "@email.sender"
+        puts @email.sender
+
         
         @user.emails.push(@email)
 

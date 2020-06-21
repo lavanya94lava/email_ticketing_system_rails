@@ -9,6 +9,7 @@ class ReplyMailer < ApplicationMailer
     @reply = reply
   
     mail to: @reply["sender"],
-         subject: "Making my new app in Ruby on Rails"
+         subject: @reply["subject"],
+         thread_id: @reply["thread_id"]
   end
 end

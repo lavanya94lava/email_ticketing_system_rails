@@ -41,33 +41,46 @@ class AdminController < ApplicationController
 
       @emails = service.list_user_messages(
         'me',
-        max_results: 100,
-        q: "from: anahita.spv@gmail.com"
+        max_results: 4,
+        q: "from: test.lavanya94@gmail.com"
       )
       @email_array = []
       if set = @emails.messages
         set.each do |i|
         email = service.get_user_message('me', i.id)
         sender = email.payload.headers.find{|h| h.name =="From"}.value.split("<")[1]
-
+        
         subject = email.payload.headers.find { |header| header.name == "Subject" }.value
+
+        puts "emailpayload"
+
+        # puts email.payload[0].body.data
         date = email.payload.headers.find {|h| h.name == "Date" }.value
         body = email.payload.parts[0].body.data
-        mail_id = i.id
+        mail_id = i.id 
+
+        
+        
+        puts body
+        puts sender
 
         prev_mail = Email.find_by(mail_id: i.id);
-        
+
+
         if prev_mail.nil?
           Email.create(
             subject: subject,
-            sender:sender[0, sender.length-1] ,
+            sender:sender[0, sender.length-1], 
             body: body,
             date: date,
-            mail_id: i.id
+            mail_id: i.id,
           )
         end
-      
 
+        puts "current user"
+
+        puts current_user
+      
         my_email = {
             sender: sender[0, sender.length-1],
             subject: subject,
