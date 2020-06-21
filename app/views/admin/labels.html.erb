@@ -13,7 +13,7 @@
                 <th>Assign to </h1>
             </tr>
     <% @email_array.each do |email|%>
-    <tr>
+        <tr>
             <td><%= email[:sender]%></td>
             <td><%= email[:date]%></td>
             <td><%= email[:subject]%></td>
@@ -23,7 +23,7 @@
                 <%= form_for :user, url: "/emails/#{email[:mail_id]}/users" do |f|%>
                     <%= collection_select(:user, :user_id, User.where(admin: nil), :id, :name, {}, {:multiple => false})%>
                     <%= hidden_field_tag(:email_id, "#{email[:mail_id]}")%>
-                    <%= f.submit%>
+                    <%= f.submit "Assign User"%>
                 <% end %>
             </td>
         </tr>

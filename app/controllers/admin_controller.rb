@@ -81,10 +81,6 @@ end
   def index 
     @emails = Email.all;
   end
-
-  def temp
-
-  end
 end
 
 

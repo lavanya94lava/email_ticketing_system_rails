@@ -36,6 +36,11 @@ class UsersController < ApplicationController
     def show 
         @user = User.find(params[:id])
 
+        puts "current_user.email"
+        puts current_user.email
+
+        puts "@user.email"
+        puts   @user.email
     end
 
     private

@@ -1,34 +1,36 @@
 
-<% if current_user %>
-<h2>
-    Here is a list of all emails you have received
-</h2>
+<%if @user.email != current_user.email||current_user.admin %>
+        <h1>Already someone is logged </h1>
+<% elseif (@user.email == current_user.email) %>
+    <h2>
+        Here is a list of all emails you have received
+    </h2>
 
-<table class = "table table-bordered mt-5" >
+    <table class = "table table-bordered mt-5" >
+            <tr>
+                <th>Sender</th>
+                <th>Date</th>
+                <th>Subject</th>
+                <th>Body</th>
+                <th>Reply Please </h1>
+            </tr>
+    <% @user.emails.each do |email|%>
         <tr>
-            <th>Sender</th>
-            <th>Date</th>
-            <th>Subject</th>
-            <th>Body</th>
-            <th>Reply Please </h1>
+            <td><%= email[:sender]%></td>
+            <td><%= email[:date]%></td>
+            <td><%= email[:subject]%></td>
+            <td><%= email[:body]%></td>
+            <td>
+                <%= form_for :user, url: "/emails/reply/#{email[:mail_id]}" do |f| %>
+                    <%= hidden_field_tag(:email_sender, "#{email[:sender]}")%>
+                    <div class="control-group">
+                        <%= f.text_area :email%>
+                    </div>
+                    <%= f.submit "Send Email" %>
+                <% end %>
+            </td>
         </tr>
-<% @user.emails.each do |email|%>
-<tr>
-        <td><%= email[:sender]%></td>
-        <td><%= email[:date]%></td>
-        <td><%= email[:subject]%></td>
-        <td><%= email[:body]%></td>
-        <td>
-            <%= form_for :user, url: "/emails/reply/#{email[:mail_id]}" do |f| %>
-                <%= hidden_field_tag(:email_sender, "#{email[:sender]}")%>
-                <div class="control-group">
-                    <%= f.text_area :email%>
-                </div>
-                <%= f.submit "Send Email" %>
-            <% end %>
-        </td>
-    </tr>
-<%end%>
+    <%end%>
 <%else%>
-<h1>Please login first </h1>
+    <h1>Please login first </h1>
 <%end%>
