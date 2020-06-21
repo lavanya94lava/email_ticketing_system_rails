@@ -5,6 +5,8 @@ class ReplyMailer < ApplicationMailer
   #
   #   en.reply_mailer.new_reply.subject
   #
+
+  # here we are sending email
   def new_reply(reply)
     @reply = reply
   

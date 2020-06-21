@@ -1,6 +1,6 @@
 
 <%if @user.email != current_user.email && !current_user.admin %>
-        <h1>Already someone is logged </h1>
+        <h1>you are not authorized to view somone else work </h1>
 <% elsif @user.email == current_user.email ||current_user.admin %>
 
         <h2>

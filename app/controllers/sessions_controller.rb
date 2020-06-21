@@ -1,6 +1,7 @@
+##in this file we create sessions for our user as well as destroy them
+
 class SessionsController < ApplicationController
     def create
-
         puts "User id"
         puts params 
         user = User.find_by_email(params[:user][:email])
@@ -10,6 +11,7 @@ class SessionsController < ApplicationController
           # logged in when they navigate around our website.
           session[:user_id] = user.id
 
+          #if user is admin then show him the page where all emails could be viewed and assigned, else take the user to his own page where he could just reply to the queries
           if current_user.admin
             redirect_to '/'
           else 
@@ -21,6 +23,7 @@ class SessionsController < ApplicationController
         end
       end
     
+      #logout from the app
       def destroy
         session[:user_id] = nil
         redirect_to '/login'

@@ -1,3 +1,4 @@
+#this file pertains to the users of the app, we can create, route them to their specific pages, update them ,delete them
 class UsersController < ApplicationController
 
     def new 
@@ -13,23 +14,13 @@ class UsersController < ApplicationController
         end
     end
 
+    # this is used to add the emails to specific users and then take them to their own page
     def routing 
         
         getUserId = params[:user][:user_id]
         @user = User.find(getUserId);
 
         @email = Email.find_by(mail_id: params[:email_id]);
-
-        puts "params in routing"
-
-        puts params
-
-
-        puts "@user.name"
-        puts @user.name
-
-        puts "@email.sender"
-        puts @email.sender
 
         
         @user.emails.push(@email)
@@ -41,6 +32,7 @@ class UsersController < ApplicationController
     end
 
 
+    #this shows the working page of the user
     def show 
         @user = User.find(params[:id]);
     end
