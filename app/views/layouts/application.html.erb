@@ -15,10 +15,9 @@
 
   <% if current_user && current_user.admin %>
     <p class="alert alert-success">"Welcome! Admin"</p>
-  <% else %>
-    <% if current_user%>
+  <% elsif current_user %>
     <p class="alert alert-success">"Welcome! Employee"</p>
-    <%end%>
+  <%else %>
     <p class="alert alert-danger">"Please SignIn first"</p>
   <% end %>
 

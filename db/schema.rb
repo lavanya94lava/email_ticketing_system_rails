@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_151653) do
+ActiveRecord::Schema.define(version: 2020_06_21_170027) do
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
     t.integer "status", default: 0, null: false
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2020_06_21_151653) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "mail_id"
     t.integer "user_id"
-    t.string "thread_id"
     t.boolean "isResolved", default: false
     t.index ["user_id"], name: "index_emails_on_user_id"
   end

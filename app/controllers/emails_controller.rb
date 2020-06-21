@@ -17,12 +17,14 @@ class EmailsController < ApplicationController
             "thread_id" => thread_id
         }
 
-        puts "replyyyyy"
-        puts @reply["text"]
+        @email = Email.find_by(mail_id: thread_id)
 
         ReplyMailer.new_reply(@reply).deliver_now
 
-        
+
+        @email.isResolved = true;
+
+        @email.save;
 
         respond_to do |format|
             format.html {redirect_to "/"}
