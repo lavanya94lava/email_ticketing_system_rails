@@ -22,6 +22,7 @@ In this project, we are making a web app, where we can access our Gmail Inbox an
 3. uncomment gem 'bcrypt' from gemfile
 4. bundle install
 5. rails server
+6. go to http://localhost/3000/redirect to sign in to google
 
 # How Application Works
 

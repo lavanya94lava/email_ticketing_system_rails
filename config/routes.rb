@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'admin#labels'
 
   get '/index' => 'admin#index'
+
+  #use this route to sign in to google
   get '/redirect' => 'admin#redirect'
   
   get '/callback' => 'admin#callback'
