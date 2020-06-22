@@ -28,4 +28,14 @@ class SessionsController < ApplicationController
         session[:user_id] = nil
         redirect_to '/login'
       end
+
+
+      def new 
+        if current_user && current_user.admin 
+          redirect_to "/labels"
+        elsif 
+            current_user && !current_user.admin
+            redirect_to "/users/#{current_user.id}"
+        end
+      end
 end

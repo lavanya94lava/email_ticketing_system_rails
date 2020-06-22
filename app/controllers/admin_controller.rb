@@ -30,8 +30,8 @@ class AdminController < ApplicationController
     response = client.fetch_access_token!
   
     session[:access_token] = response['access_token']
-  
-    redirect_to "/login"
+
+      redirect_to "/login"
   end
 
 
