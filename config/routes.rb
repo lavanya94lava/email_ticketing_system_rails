@@ -20,10 +20,7 @@ Rails.application.routes.draw do
 
   #this renders the view of the work of an employee
   get '/users/:id' => 'users#show'
-
-  #this route renders the details of an employee
-  get '/user/:id' => 'users#view'
-
+  
   # this route is used for deleting an employee
 
   delete '/user/:id' => 'users#destroy'
