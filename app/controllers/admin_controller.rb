@@ -31,7 +31,7 @@ class AdminController < ApplicationController
   
     session[:access_token] = response['access_token']
   
-    redirect_to url_for(:action => :labels)
+    redirect_to "/login"
   end
 
 

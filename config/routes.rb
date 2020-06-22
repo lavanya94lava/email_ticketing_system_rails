@@ -2,14 +2,13 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  #initially this will be rendered if signed in else go to redirect
-  root 'admin#labels'
 
   #use this route to sign in to google
-  get '/redirect' => 'admin#redirect'
+  root 'admin#redirect'
   
   get '/callback' => 'admin#callback'
   
+  #use this route to call the admin main file
   get '/labels' => 'admin#labels'
 
   #this route is used for post the emails into the user
