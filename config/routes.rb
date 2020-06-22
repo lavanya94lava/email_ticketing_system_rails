@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'admin#labels'
 
-  get '/index' => 'admin#index'
+  #initially this will be rendered if signed in else go to redirect
+  root 'admin#labels'
 
   #use this route to sign in to google
   get '/redirect' => 'admin#redirect'
