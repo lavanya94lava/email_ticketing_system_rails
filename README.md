@@ -19,7 +19,7 @@ In this project, we are making a web app, where we can access our Gmail Inbox an
 
 1. git clone https://github.com/lavanya94lava/email_ticketing_system_rails.git
 2. put gem 'google-api-client', '~> 0.9', require: 'google/apis/gmail_v1' in your gemfile
-3. uncomment gem 'bcrypt' from gemfile
+3. Configure your Gmail and get Client Id and client secret from https://developers.google.com/gmail/api/quickstart/ruby.
 4. bundle install
 5. rails server
 6. go to http://localhost/3000/redirect to sign in to google

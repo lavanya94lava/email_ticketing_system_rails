@@ -50,8 +50,8 @@ class AdminController < ApplicationController
 
       @emails = service.list_user_messages(
         'me',
-        max_results: 5,
-        q: "vibhujawa@gmail.com"
+        max_results: 1,
+        q: "anahita.spv@gmail.com"
       )
       @email_array = []
       #we get an array of messages
