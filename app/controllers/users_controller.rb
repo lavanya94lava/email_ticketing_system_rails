@@ -35,14 +35,12 @@ class UsersController < ApplicationController
 
     #this shows the working page of the user
     def show 
-        @user = User.find(params[:id]);
-    end
 
-
-    # this shows the details of a user
-
-    def view
-        @user = User.find(params[:id]);
+        if current_user
+            @user = User.find(params[:id]);
+        else
+            redirect_to "/login"
+        end
     end
 
     #show all users except the current admin using this
