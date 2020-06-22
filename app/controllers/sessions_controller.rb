@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
           #if user is admin then show him the page where all emails could be viewed and assigned, else take the user to his own page where he could just reply to the queries
           if current_user.admin
-            redirect_to '/'
+            redirect_to '/labels'
           else 
             redirect_to "/users/#{user.id}"
           end
