@@ -11,6 +11,7 @@ class ReplyMailer < ApplicationMailer
     @reply = reply
   
     mail to: @reply["sender"],
-         subject: @reply["subject"]
+         subject: @reply["subject"],
+         thread_id: @reply["thread_id"]
   end
 end
