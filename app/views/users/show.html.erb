@@ -22,13 +22,17 @@
                 <td><%= email[:subject]%></td>
                 <td><%= email[:body]%></td>
                 <td>
-                    <%= form_for :user, url: "/emails/reply/#{email[:mail_id]}" do |f| %>
-                        <%= hidden_field_tag(:email_sender, "#{email[:sender]}")%>
-                        <%= hidden_field_tag(:email_subject,"#{email[:subject]}")%>
-                        <div class="control-group">
-                            <%= f.text_area :email%>
-                        </div>
-                        <%= f.submit "Send Email" %>
+                    <%if !email.isResolved %>
+                        <%= form_for :user, url: "/emails/reply/#{email[:mail_id]}" do |f| %>
+                            <%= hidden_field_tag(:email_sender, "#{email[:sender]}")%>
+                            <%= hidden_field_tag(:email_subject,"#{email[:subject]}")%>
+                                <div class="control-group">
+                                    <%= f.text_area :email%>
+                                </div>
+                            <%= f.submit "Send Email" %>
+                        <%end%>
+                    <%else%>
+                        <p>This email has been resolved</p>
                     <% end %>
                 </td>
             </tr>

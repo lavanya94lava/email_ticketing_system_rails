@@ -21,19 +21,22 @@
             <td><%= email[:date]%></td>
             <td><%= email[:subject]%></td>
             <td><%= email[:body]%></td>
-            <td>
-               
-                <%= form_for :user, url: "/emails/#{email[:mail_id]}/users" do |f|%>
-                    <div class = "form-group">
-                        <%= collection_select(:user, :user_id, User.where(admin: nil), :id, :name, {prompt: true}, {})%>
-                    </div>
-                    <%= hidden_field_tag(:email_id, "#{email[:mail_id]}")%>
-                    <%= f.submit "Assign User"%>
-                    <div class = "form-group">
-                        <% if email.user_id%>
-                            <p>This email has been already been assigned to <strong><%= User.find(email.user_id).name%></strong>. Now, you can reassign it to some other user</p>
-                        <%end%>
-                    </div>
+            <td>   
+                <% if !email.isResolved%>
+                    <%= form_for :user, url: "/emails/#{email[:mail_id]}/users" do |f|%>
+                        <div class = "form-group">
+                            <%= collection_select(:user, :user_id, User.where(admin: nil), :id, :name, {prompt: true}, {})%>
+                        </div>
+                        <%= hidden_field_tag(:email_id, "#{email[:mail_id]}")%>
+                        <%= f.submit "Assign User"%>
+                        <div class = "form-group">
+                            <% if email.user_id%>
+                                <p>This email has been already been assigned to <strong><%= User.find(email.user_id).name%></strong>. Now, you can reassign it to some other user</p>
+                            <%end%>
+                        </div>
+                    <% end %>
+                <%else%>
+                    <p style ="background-color: Green">Your email has been resolved</p>
                 <% end %>
             </td>
         </tr>

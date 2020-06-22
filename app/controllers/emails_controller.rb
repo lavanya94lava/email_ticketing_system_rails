@@ -29,7 +29,7 @@ class EmailsController < ApplicationController
 
         #this is to show the response that the request was complete
         respond_to do |format|
-            format.html {redirect_to "/"}
+            format.html {redirect_to "/users/#{current_user.id}"}
             format.json { render json: @reply}
         end
     end
