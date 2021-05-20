@@ -11,7 +11,7 @@ gem 'sqlite3', '~> 1.4'
 
 gem 'google-api-client', '~> 0.9', require: 'google/apis/gmail_v1'
 
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
