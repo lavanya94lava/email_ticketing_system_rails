@@ -4,7 +4,7 @@
 class AdminController < ApplicationController
  
 
-  #here we are configuring our app with gmail account, first we are authorizing ourself
+  #here we are configuring our app with gmail account, first we are authorising ourself
   def redirect
     client = Signet::OAuth2::Client.new({
       client_id: "994880020784-j1fiagj1brm0tgv7t6mrl425u34bm1oa.apps.googleusercontent.com",
