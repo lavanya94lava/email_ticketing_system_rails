@@ -17,7 +17,7 @@ class AdminController < ApplicationController
     redirect_to client.authorization_uri.to_s
   end
 
-  #first action will redirect here and here we will get access token using our authorized credentials
+  #first action will redirect here and here we will get access token using our authorised credentials
   def callback
     client = Signet::OAuth2::Client.new({
       client_id: "994880020784-j1fiagj1brm0tgv7t6mrl425u34bm1oa.apps.googleusercontent.com",
