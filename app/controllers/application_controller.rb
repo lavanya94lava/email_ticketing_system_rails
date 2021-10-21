@@ -1,4 +1,4 @@
-//this is a controller
+// this is a controller
 
 class ApplicationController < ActionController::Base
 
